@@ -94,12 +94,12 @@
                     android:layout_marginTop="@dimen/value8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/value8dp"
                     android:text="@string/don_t_have_an_account"/>
 
             <TextView
                     android:id="@+id/tv_register"
                     android:layout_marginTop="@dimen/value8dp"
+                    android:padding="@dimen/value8dp"
                     android:layout_width="wrap_content"
                     android:textColor="@color/colorAccent"
                     android:layout_height="wrap_content"
