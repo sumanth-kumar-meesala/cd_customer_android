@@ -4,18 +4,13 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-ext {
-    appVersionName = '1.0'
-    appPackageId = 'au.com.emerg.taxitowncars'
-}
+apply from: "$project.rootDir/app/artifacts/script-git-version.gradle"
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "$appPackageId"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
         flavorDimensions "default"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,13 +39,15 @@ android {
 
     productFlavors {
         development {
-            applicationId "$appPackageId" + ".internal"
-            versionName "$appVersionName"
+            applicationId = 'au.com.emerg.taxitowncars.dev'
+            versionName gitVersionName
+            versionCode gitVersionCode
         }
 
         production {
-            applicationId "$appPackageId"
-            versionName "$appVersionName"
+            applicationId = 'au.com.emerg.taxitowncars'
+            versionName gitVersionName
+            versionCode gitVersionCode
         }
     }
 
