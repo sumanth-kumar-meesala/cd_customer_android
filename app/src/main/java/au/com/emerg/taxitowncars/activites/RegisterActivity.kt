@@ -3,6 +3,7 @@ package au.com.emerg.taxitowncars.activites
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
+import android.widget.ImageView
 import au.com.emerg.taxitowncars.BaseActivity
 import au.com.emerg.taxitowncars.R
 import com.google.android.material.button.MaterialButton
@@ -39,6 +40,7 @@ class RegisterActivity : BaseActivity(), View.OnClickListener {
         til_confirm_password = findViewById(R.id.til_confirm_password)
 
         findViewById<MaterialButton>(R.id.btn_register).setOnClickListener(this)
+        findViewById<ImageView>(R.id.iv_back).setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
