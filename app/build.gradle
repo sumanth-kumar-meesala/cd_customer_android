@@ -51,12 +51,18 @@ android {
         }
     }
 
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            def relativeRootDir = output.packageApplication.outputDirectory.toPath()
-                    .relativize(rootDir.toPath()).toFile()
-            output.outputFileName = new File("$relativeRootDir/release",
-                    output.outputFileName.replace(".apk", "-${variant.versionName}.apk"))
+    android.applicationVariants.all { variant ->
+
+        variant.getAssembleProvider().get().doLast {
+            variant.outputs.each { output ->
+                def apk = variant.outputs[0].outputFile
+                File versionInfo = new File(apk.parent, "versionInfo.properties")
+                versionInfo.text = "versionCode=${android.defaultConfig.versionCode}\nversionName=${android.defaultConfig.versionName}"
+                copy {
+                    from "${versionInfo}"
+                    into "$project.projectDir/temp_archive"
+                }
+            }
         }
     }
 }
@@ -67,6 +73,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.android.support:design:28.0.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'

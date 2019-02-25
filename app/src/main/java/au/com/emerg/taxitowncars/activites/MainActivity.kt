@@ -1,9 +1,10 @@
-package au.com.emerg.taxitowncars
+package au.com.emerg.taxitowncars.activites
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import au.com.emerg.taxitowncars.BaseActivity
+import au.com.emerg.taxitowncars.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -11,4 +11,9 @@
     <string name="name">Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
+    <string name="enter_valid_email">Enter valid email</string>
+    <string name="enter_valid_password">Enter valid password</string>
+    <string name="enter_valid_name">Enter valid name</string>
+    <string name="enter_valid_phone_number">Enter valid phone number</string>
+    <string name="password_doesnt_match">Passwords are not matching</string>
 </resources>
