@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.TextView
-import au.com.emerg.taxitowncars.BaseActivity
 import au.com.emerg.taxitowncars.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
