@@ -12,6 +12,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.OnBoarding" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/ic_launcher</item>
         <item name="android:windowNoTitle">true</item>

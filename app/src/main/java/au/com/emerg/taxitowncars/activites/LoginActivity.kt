@@ -6,9 +6,11 @@ import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import au.com.emerg.taxitowncars.R
+import au.com.emerg.taxitowncars.utils.PreferenceUtils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
 
@@ -49,7 +51,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 } else if (password.isEmpty()) {
                     til_password.error = getString(R.string.enter_valid_password)
                 } else {
+                    showLoading()
 
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                        hideLoading()
+
+                        if (it.isSuccessful) {
+                            PreferenceUtils.setName(it.result?.user?.displayName.toString(), this)
+                            PreferenceUtils.setEmail(it.result?.user?.email.toString(), this)
+                            startActivity(Intent(this, MainActivity::class.java))
+                        }
+                    }
                 }
             }
         }
