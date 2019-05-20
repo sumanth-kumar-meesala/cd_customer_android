@@ -49,8 +49,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         mapFragment = MapFragment()
         newBookingFragment = NewBookingFragment()
 
-        addFragment(mapFragment)
         addFragment(newBookingFragment)
+        addFragment(mapFragment)
 
         val bottom_nav_view = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottom_nav_view.setOnNavigationItemSelectedListener(object :

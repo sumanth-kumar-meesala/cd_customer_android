@@ -20,5 +20,14 @@ class PreferenceUtils {
         fun getEmail(context: Context): String {
             return PreferenceManager.getDefaultSharedPreferences(context).getString("email", "Unknown")!!
         }
+
+        fun setCustomerId(customerId: Long, context: Context) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putLong("customerId", customerId)
+                .apply()
+        }
+
+        fun getCustomerId(context: Context): Long {
+            return PreferenceManager.getDefaultSharedPreferences(context).getLong("customerId", 0)
+        }
     }
 }

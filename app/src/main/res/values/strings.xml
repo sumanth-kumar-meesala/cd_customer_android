@@ -45,4 +45,36 @@
     <string name="cancel">Cancel</string>
     <string name="enable">Enable</string>
     <string name="gps_not_enabled">GPS not enable, please enable to continue.</string>
+    <string name="pick_address">Pickup Address</string>
+    <string name="drop_off_address">Drop off address</string>
+    <string name="date_time"><![CDATA[Date & Time]]></string>
+    <string name="price">Price</string>
+    <string name="notes">Notes</string>
+    <string name="create">Create</string>
+    <string name="select_valid_location">Select valid location</string>
+    <string name="ok">Ok</string>
+    <string name="select_pickup_address">Select pickup address</string>
+    <string name="select_drop_off_address">Select drop off address</string>
+    <string name="select_date_time"><![CDATA[Select Date & Time]]></string>
+    <string name="price_empty">Price is empty</string>
+    <string name="booking_created_successfully">Booking created successfully</string>
+
+    <string-array name="car_types_array">
+        <item>Economy Class</item>
+        <item>Business Class</item>
+        <item>Europe car</item>
+        <item>SUV 6 Seaters</item>
+        <item>Van 8 Seaters</item>
+        <item>Van 11 Seaters</item>
+    </string-array>
+
+    <string-array name="payment_types_array">
+        <item>Card</item>
+        <item>Cash</item>
+        <item>Docket</item>
+        <item>Account</item>
+        <item>Cab Charge</item>
+        <item>EFTPOS 5%</item>
+        <item>EFTPOS 10%</item>
+    </string-array>
 </resources>

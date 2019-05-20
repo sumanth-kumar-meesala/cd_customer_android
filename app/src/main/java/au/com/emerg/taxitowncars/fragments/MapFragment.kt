@@ -1,6 +1,7 @@
 package au.com.emerg.taxitowncars.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
@@ -43,8 +44,11 @@ class MapFragment : Fragment(), OnMapReadyCallback,
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
     }
 
+    @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap?) {
         map = googleMap!!
         map.mapType = GoogleMap.MAP_TYPE_NORMAL
@@ -65,6 +69,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
+    @SuppressLint("MissingPermission")
     @AfterPermissionGranted(RC_LOCATION)
     private fun accessLocation() {
         val perms = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -112,7 +117,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             gps_enabled = lm!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
         } catch (ex: Exception) {
         }
-
 
         if (!gps_enabled) {
             AlertDialog.Builder(context as Context)

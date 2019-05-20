@@ -6,6 +6,11 @@ import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import au.com.emerg.taxitowncars.R
+import au.com.emerg.taxitowncars.models.BaseResponse
+import au.com.emerg.taxitowncars.models.Customer
+import au.com.emerg.taxitowncars.retrofit.RetrofitCallback
+import au.com.emerg.taxitowncars.retrofit.RetrofitInstance
+import au.com.emerg.taxitowncars.retrofit.RetrofitResult
 import au.com.emerg.taxitowncars.utils.PreferenceUtils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -54,12 +59,29 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     showLoading()
 
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                        hideLoading()
 
                         if (it.isSuccessful) {
                             PreferenceUtils.setName(it.result?.user?.displayName.toString(), this)
                             PreferenceUtils.setEmail(it.result?.user?.email.toString(), this)
                             startActivity(Intent(this, MainActivity::class.java))
+                            val context = this
+
+                            RetrofitInstance.service.getUserInfo(it.result?.user?.uid!!)
+                                .enqueue(RetrofitCallback(object : RetrofitResult<BaseResponse<Customer>> {
+                                    override fun success(value: BaseResponse<Customer>) {
+                                        PreferenceUtils.setCustomerId(value.data?.id!!, context)
+                                        hideLoading()
+                                    }
+
+                                    override fun failure() {
+                                        hideLoading()
+                                        showToast(R.string.error_message)
+                                    }
+
+                                }))
+                        } else {
+                            hideLoading()
+                            showToast(R.string.error_message)
                         }
                     }
                 }

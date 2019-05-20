@@ -84,12 +84,19 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
 
     implementation 'pub.devrel:easypermissions:3.0.0'
+
+    implementation 'net.danlew:android.joda:2.10.1'
+    implementation ('com.fatboyindustrial.gson-jodatime-serialisers:gson-jodatime-serialisers:1.7.0') {
+        exclude group: 'joda-time'
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.2-alpha2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
+    implementation 'com.google.firebase:firebase-messaging:17.6.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
