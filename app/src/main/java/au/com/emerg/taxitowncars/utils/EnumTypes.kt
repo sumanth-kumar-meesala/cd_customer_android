@@ -47,3 +47,13 @@ enum class ProfileStatusByCD {
     Active,
     Blocked
 }
+
+enum class CustomerStatus {
+    Online,
+    Offline
+}
+
+enum class CDEntityType {
+    Driver,
+    AppCustomer
+}

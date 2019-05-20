@@ -1,9 +1,7 @@
 package au.com.emerg.taxitowncars.retrofit
 
-import au.com.emerg.taxitowncars.models.BaseResponse
-import au.com.emerg.taxitowncars.models.Customer
-import au.com.emerg.taxitowncars.models.NewBookingRequest
-import au.com.emerg.taxitowncars.models.NewCustomerRequest
+import au.com.emerg.taxitowncars.models.*
+import au.com.emerg.taxitowncars.utils.CustomerStatus
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,4 +21,18 @@ interface RetrofitService {
     fun getUserInfo(
         @Query("uid") uid: String
     ): Call<BaseResponse<Customer>>
+
+    @GET("/appCustomer/locationReport")
+    fun locationReport(
+        @Query("appCustomerStatus") appCustomerStatus: CustomerStatus,
+        @Query("appCustomerId") appCustomerId: Long,
+        @Query("longitude") longitude: Double,
+        @Query("latitude") latitude: Double,
+        @Query("heading") heading: Float
+    ): Call<BaseResponse<Any>>
+
+    @GET("/appCustomer/getDriverLocation")
+    fun getDriverLocation(
+        @Query("appCustomerId") appCustomerId: Long
+    ): Call<BaseResponse<DriverLocationResponse>>
 }

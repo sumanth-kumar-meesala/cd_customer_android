@@ -29,5 +29,14 @@ class PreferenceUtils {
         fun getCustomerId(context: Context): Long {
             return PreferenceManager.getDefaultSharedPreferences(context).getLong("customerId", 0)
         }
+
+        fun setStatus(status: Boolean, context: Context) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("status", status)
+                .apply()
+        }
+
+        fun getStatus(context: Context): Boolean {
+            return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("status", false)
+        }
     }
 }

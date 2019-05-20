@@ -58,6 +58,7 @@
     <string name="select_date_time"><![CDATA[Select Date & Time]]></string>
     <string name="price_empty">Price is empty</string>
     <string name="booking_created_successfully">Booking created successfully</string>
+    <string name="status">Status</string>
 
     <string-array name="car_types_array">
         <item>Economy Class</item>

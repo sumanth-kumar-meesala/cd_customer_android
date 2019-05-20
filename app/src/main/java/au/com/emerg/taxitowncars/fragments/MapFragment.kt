@@ -4,22 +4,40 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.Settings
+import android.util.LongSparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import au.com.emerg.taxitowncars.R
+import au.com.emerg.taxitowncars.models.BaseResponse
+import au.com.emerg.taxitowncars.models.DriverLocationResponse
+import au.com.emerg.taxitowncars.retrofit.RetrofitCallback
+import au.com.emerg.taxitowncars.retrofit.RetrofitInstance
+import au.com.emerg.taxitowncars.retrofit.RetrofitResult
+import au.com.emerg.taxitowncars.utils.CustomerStatus
+import au.com.emerg.taxitowncars.utils.LatLngInterpolator
+import au.com.emerg.taxitowncars.utils.MarkerAnimation
+import au.com.emerg.taxitowncars.utils.PreferenceUtils
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -27,6 +45,9 @@ import pub.devrel.easypermissions.EasyPermissions
 class MapFragment : Fragment(), OnMapReadyCallback,
     GoogleApiClient.ConnectionCallbacks,
     GoogleApiClient.OnConnectionFailedListener, EasyPermissions.PermissionCallbacks {
+    private lateinit var handler: Handler
+    private lateinit var retrofitInstance: RetrofitInstance
+    private lateinit var markersMap: LongSparseArray<Marker>
 
     companion object {
         const val RC_LOCATION = 2198
@@ -45,7 +66,95 @@ class MapFragment : Fragment(), OnMapReadyCallback,
         val mapFragment = childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        markersMap = LongSparseArray()
+        handler = Handler()
 
+        if (PreferenceUtils.getStatus(context!!)) {
+            handler.post(runnableCode)
+        }
+    }
+
+    private val runnableCode = object : Runnable {
+
+        override fun run() {
+            if (context != null) {
+                if (ActivityCompat.checkSelfPermission(
+                        context!!.applicationContext,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) !== PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        context!!.applicationContext,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) !== PackageManager.PERMISSION_GRANTED
+                ) {
+                    return
+                }
+
+                val lm = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                val location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                val customerId = PreferenceUtils.getCustomerId(context!!)
+
+
+                if (location != null && customerId != 0L) {
+                    sendUserLocation(customerId, location)
+
+                    showDriverLocation(customerId)
+                }
+
+                handler.postDelayed(this, 4000)
+            }
+
+        }
+    }
+
+    private fun sendUserLocation(
+        customerId: Long,
+        location: Location
+    ) {
+
+        val longitude = location.longitude
+        val latitude = location.latitude
+        val heading = location.bearing
+
+        RetrofitInstance.service.locationReport(
+            CustomerStatus.Online,
+            customerId,
+            longitude,
+            latitude,
+            heading
+        ).enqueue(RetrofitCallback(object : RetrofitResult<BaseResponse<Any>> {
+            override fun success(value: BaseResponse<Any>) {
+            }
+
+            override fun failure() {
+            }
+        }))
+    }
+
+    private fun showDriverLocation(customerId: Long) {
+        RetrofitInstance.service.getDriverLocation(
+            customerId
+        ).enqueue(RetrofitCallback(object : RetrofitResult<BaseResponse<DriverLocationResponse>> {
+            override fun success(value: BaseResponse<DriverLocationResponse>) {
+                if (value.data != null) {
+                    val data = value.data as DriverLocationResponse
+                    val latLng = LatLng(data.latitude!!, data.latitude!!)
+
+                    if (markersMap.get(data.id!!) == null) {
+                        val markerOptions = MarkerOptions()
+                        markerOptions.position(latLng)
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_car))
+                        val marker = map.addMarker(markerOptions)
+                        markersMap.put(data.id!!, marker)
+                    } else {
+                        val marker = markersMap.get(data.id!!)
+                        MarkerAnimation.animateMarkerToGB(marker, latLng, LatLngInterpolator.Spherical())
+                    }
+                }
+            }
+
+            override fun failure() {
+            }
+        }))
     }
 
     @SuppressLint("MissingPermission")
@@ -129,6 +238,14 @@ class MapFragment : Fragment(), OnMapReadyCallback,
                 }
                 .setNegativeButton(getString(R.string.cancel), null)
                 .show()
+        }
+    }
+
+    fun statusUpdated(checked: Boolean) {
+        if (checked) {
+            handler.post(runnableCode)
+        } else {
+            handler.removeCallbacks(runnableCode)
         }
     }
 }

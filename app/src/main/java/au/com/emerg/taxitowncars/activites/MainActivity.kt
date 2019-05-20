@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -18,6 +19,7 @@ import au.com.emerg.taxitowncars.utils.PreferenceUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,6 +44,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         val tv_name = navigationView.getHeaderView(0).findViewById<TextView>(R.id.tv_name)
         val tv_email = navigationView.getHeaderView(0).findViewById<TextView>(R.id.tv_email)
+
+        val menu = navigationView.menu
+        val nav_status = menu.findItem(2131296432).actionView as Switch
+        nav_status.setOnCheckedChangeListener({ view, isChecked ->
+            PreferenceUtils.setStatus(true, this)
+            mapFragment?.statusUpdated(isChecked)
+        })
 
         tv_name.text = PreferenceUtils.getName(this)
         tv_email.text = PreferenceUtils.getEmail(this)
@@ -78,6 +87,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 FirebaseAuth.getInstance().signOut()
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
+            }
+            R.id.nav_status -> {
+                PreferenceUtils.setStatus(true, this)
+                mapFragment?.statusUpdated(item.isChecked)
             }
         }
 
