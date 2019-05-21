@@ -137,7 +137,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,
             override fun success(value: BaseResponse<DriverLocationResponse>) {
                 if (value.data != null) {
                     val data = value.data as DriverLocationResponse
-                    val latLng = LatLng(data.latitude!!, data.latitude!!)
+                    val latLng = LatLng(data.latitude!!, data.longitude!!)
 
                     if (markersMap.get(data.id!!) == null) {
                         val markerOptions = MarkerOptions()
