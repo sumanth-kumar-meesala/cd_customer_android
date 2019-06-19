@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/iv_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <LinearLayout
+            android:id="@+id/ll_actions"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/value16dp"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_bookings"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/value8dp"
+                    android:text="@string/my_bookings"
+                    android:layout_height="70dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_create_booking"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/value8dp"
+                    android:text="@string/create_booking"
+                    android:layout_height="70dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_profile"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/value8dp"
+                    android:text="@string/my_profile"
+                    android:layout_height="70dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_driver"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/value8dp"
+                    android:text="@string/my_driver"
+                    android:layout_height="70dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

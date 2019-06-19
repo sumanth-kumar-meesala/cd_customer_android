@@ -35,4 +35,9 @@ interface RetrofitService {
     fun getDriverLocation(
         @Query("appCustomerId") appCustomerId: Long
     ): Call<BaseResponse<DriverLocationResponse>>
+
+    @GET("/appCustomer/getAppCustomerSettings")
+    fun getAppCustomerSettings(
+        @Query("appCustomerId") appCustomerId: Long
+    ): Call<BaseResponse<AppCustomerSettingsResponse>>
 }

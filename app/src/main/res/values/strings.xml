@@ -59,6 +59,10 @@
     <string name="price_empty">Price is empty</string>
     <string name="booking_created_successfully">Booking created successfully</string>
     <string name="status">Status</string>
+    <string name="my_bookings">My bookings</string>
+    <string name="create_booking">Create Booking</string>
+    <string name="my_profile">My profile</string>
+    <string name="my_driver">My Driver</string>
 
     <string-array name="car_types_array">
         <item>Economy Class</item>

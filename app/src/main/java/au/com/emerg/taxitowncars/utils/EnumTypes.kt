@@ -57,3 +57,8 @@ enum class CDEntityType {
     Driver,
     AppCustomer
 }
+
+enum class AppOwnerType {
+    Driver,
+    Company
+}

@@ -63,7 +63,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         if (it.isSuccessful) {
                             PreferenceUtils.setName(it.result?.user?.displayName.toString(), this)
                             PreferenceUtils.setEmail(it.result?.user?.email.toString(), this)
-                            startActivity(Intent(this, MainActivity::class.java))
+                            startActivity(Intent(this, HomeActivity::class.java))
                             val context = this
 
                             RetrofitInstance.service.getUserInfo(it.result?.user?.uid!!)
