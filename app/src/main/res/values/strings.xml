@@ -63,6 +63,8 @@
     <string name="create_booking">Create Booking</string>
     <string name="my_profile">My profile</string>
     <string name="my_driver">My Driver</string>
+    <string name="call">Call</string>
+    <string name="message">Message</string>
 
     <string-array name="car_types_array">
         <item>Economy Class</item>

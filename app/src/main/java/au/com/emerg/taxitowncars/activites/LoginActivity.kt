@@ -70,6 +70,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                 .enqueue(RetrofitCallback(object : RetrofitResult<BaseResponse<Customer>> {
                                     override fun success(value: BaseResponse<Customer>) {
                                         PreferenceUtils.setCustomerId(value.data?.id!!, context)
+                                        PreferenceUtils.setOwnerId(value.data?.ownerAssociationId!!, context)
                                         hideLoading()
                                     }
 

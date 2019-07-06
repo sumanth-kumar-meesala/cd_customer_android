@@ -40,4 +40,9 @@ interface RetrofitService {
     fun getAppCustomerSettings(
         @Query("appCustomerId") appCustomerId: Long
     ): Call<BaseResponse<AppCustomerSettingsResponse>>
+
+    @GET("/appCustomer/getOwner")
+    fun getOwner(
+        @Query("appCustomerId") appCustomerId: Long
+    ): Call<BaseResponse<DriverDetailsResponse>>
 }

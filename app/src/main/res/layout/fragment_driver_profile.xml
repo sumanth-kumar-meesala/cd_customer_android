@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/iv_bg"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="#99000000"
+    />
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:padding="@dimen/value16dp"
+            android:layout_marginTop="@dimen/value24dp"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_avatar"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center_horizontal"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="@dimen/value16dp"
+              android:background="@color/clouds"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/value8dp"
+                  android:textColor="@android:color/white"
+                  android:text="@string/first_name"/>
+        <TextView
+                android:id="@+id/tv_first_name"
+                android:layout_width="wrap_content"
+                tools:text="First Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="@dimen/value8dp"
+              android:background="@color/clouds"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textColor="@android:color/white"
+                  android:layout_marginTop="@dimen/value8dp"
+                  android:text="@string/last_name"/>
+        <TextView
+                android:id="@+id/tv_last_name"
+                android:layout_width="wrap_content"
+                tools:text="First Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="@dimen/value8dp"
+              android:background="@color/clouds"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/value8dp"
+                  android:textColor="@android:color/white"
+                  android:text="@string/phone_number"/>
+        <TextView
+                android:id="@+id/tv_phone_number"
+                android:layout_width="wrap_content"
+                tools:text="First Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="@dimen/value8dp"
+              android:background="@color/clouds"/>
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="@dimen/value8dp"
+                  android:textColor="@android:color/white"
+                  android:text="@string/email"/>
+        <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                tools:text="First Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"/>
+
+        <View android:layout_width="match_parent"
+              android:layout_height="1dp"
+              android:layout_marginTop="@dimen/value8dp"
+              android:background="@color/clouds"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/value24dp"
+                android:paddingTop="@dimen/value16dp"
+                android:paddingBottom="@dimen/value16dp"
+                android:text="@string/call"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/value16dp"
+                android:paddingTop="@dimen/value16dp"
+                android:paddingBottom="@dimen/value16dp"
+                android:text="@string/message"/>
+    </LinearLayout>
+</RelativeLayout>

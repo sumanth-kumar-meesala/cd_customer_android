@@ -30,6 +30,33 @@ class PreferenceUtils {
             return PreferenceManager.getDefaultSharedPreferences(context).getLong("customerId", 0)
         }
 
+        fun setOwnerId(ownerId: Long, context: Context) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putLong("ownerId", ownerId)
+                .apply()
+        }
+
+        fun getOwnerId(context: Context): Long {
+            return PreferenceManager.getDefaultSharedPreferences(context).getLong("ownerId", 0)
+        }
+
+        fun setAccent1(color: Int, context: Context) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putInt("accent1", color)
+                .apply()
+        }
+
+        fun getAccent1(context: Context): Int {
+            return PreferenceManager.getDefaultSharedPreferences(context).getInt("accent1", 0)
+        }
+
+        fun setAccent2(color: Int, context: Context) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putInt("accent2", color)
+                .apply()
+        }
+
+        fun getAccent2(context: Context): Int {
+            return PreferenceManager.getDefaultSharedPreferences(context).getInt("accent2", 0)
+        }
+
         fun setStatus(status: Boolean, context: Context) {
             PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("status", status)
                 .apply()

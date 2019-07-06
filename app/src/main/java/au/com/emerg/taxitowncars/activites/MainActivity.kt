@@ -46,11 +46,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val tv_email = navigationView.getHeaderView(0).findViewById<TextView>(R.id.tv_email)
 
         val menu = navigationView.menu
-        val nav_status = menu.findItem(2131296432).actionView as Switch
-        nav_status.setOnCheckedChangeListener({ view, isChecked ->
-            PreferenceUtils.setStatus(true, this)
-            mapFragment?.statusUpdated(isChecked)
-        })
+//        val nav_status = menu.findItem(2131296432).actionView as Switch
+//        nav_status.setOnCheckedChangeListener({ view, isChecked ->
+//            PreferenceUtils.setStatus(true, this)
+//            mapFragment?.statusUpdated(isChecked)
+//        })
 
         tv_name.text = PreferenceUtils.getName(this)
         tv_email.text = PreferenceUtils.getEmail(this)

@@ -62,3 +62,10 @@ enum class AppOwnerType {
     Driver,
     Company
 }
+
+enum class DriverStatus {
+    Online,
+    OnJob,
+    Offline
+}
+
