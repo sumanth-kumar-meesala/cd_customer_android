@@ -27,10 +27,6 @@
 
         </activity>
 
-        <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyA6U3pkA8ap8f9-_1ylq8-6hl_Ly4wW8uA"/>
-
         <activity
                 android:name=".activites.RegisterActivity"
                 android:theme="@style/AppTheme.NoActionBar.OnBoarding"
